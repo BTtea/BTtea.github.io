@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <meta name="keywords" content="天空之城，天空之城online，天空之城onweb">
+    <style type="text/css">
+		* {cursor: url(http://cur.cursors-4u.net/games/gam-14/gam1340.cur), auto !important;}
+        /*- Menu Tabs F--------------------------- */
+        #tabsC {
+            /*如果分頁要放置在頁面任意處,則以下三行勿省略*/
+            padding:0px;
+            margin:0px;
+            width:100%;
+            /*若分頁是獨立頁面,可以自訂 tabsC 的 padding 值，並加clear屬性*/
+            /*clear:both*/
+            /*padding:12px;*/
+            border-left:#666 1px solid;
+            border-right:#666 1px solid;
+            border-bottom:#666 1px solid;
+        }
+
+        #tabsF {
+            float:left;
+            width:100%;
+            margin:0;
+            padding:0;
+            font-size:13px;
+            line-height:normal;
+            border-left:#FFF 1px solid;
+            border-right:#FFF 1px solid;
+            border-bottom:0px solid #666;
+            background:url(tabBG.gif) repeat-x left bottom;
+            *float:none;
+        }
+
+        #tabsF ul {
+            margin:0;
+            padding:10px 10px 0px 6px;
+            list-style:none;
+        }
+
+        #tabsF li {
+            display:inline;
+            margin:0;
+            padding:0;
+        }
+
+        #tabsF a {
+            float:left;
+            background:url("tableftF.gif") no-repeat left top;
+            margin:0;
+            padding:0px 0 0 4px;
+            text-decoration:none;
+            border-bottom:1px solid #666;
+        }
+
+        #tabsF a span {
+            float:left;
+            display:block;
+            background:url("tabrightF.gif") no-repeat right top;
+            padding:9px 15px 5px 6px;
+            color:#666;
+        }
+
+        #tabsF span {
+            float:left;
+            background:url("tableftF.gif") no-repeat left top;
+            margin:0;
+            padding:4px 0 0 4px;
+            text-decoration:none;
+        }
+
+        #tabsF span span {
+            float:left;
+            display:block;
+            background:url("tabrightF.gif") no-repeat right top;
+            padding:9px 15px 5px 6px;
+            color:#666;
+        }
+            /* Commented Backslash Hack hides rule from IE5-Mac \*/
+
+        #tabsF a span {float:none;}
+            /* End IE5-Mac hack */
+        #tabsF a:hover span {
+            color:#000;
+        }
+        #tabsF a:hover {
+            /*
+            background-position:0% -42px;
+            */
+        }
+
+        #tabsF a:hover span {
+            /*
+            background-position:100% -42px;
+            */
+        }
+
+        #tabsF #current a {
+            background-position:0% -42px;
+            border-bottom:1px solid #FFF;
+            color:#000;
+        }
+        #tabsF #current a span {
+            background-position:100% -42px;
+            color:#000;
+        }
+        #tabsF #current span span {
+            background-position:100% -42px;
+            border-bottom:1px solid #FFF;
+            color:#000;
+        }
+        .btn {
+            width:321px;height:40px;font-size:20px;color:#ffffff;border:3px orange double;background-color:transparent;
+        }
+	</style>
+    <script language='javascript'>
+        window.resizeTo(800,600);
+        var ifConnected=window.navigator.onLine;
+        if(ifConnected){
+            document.title='★天空之城 online ☆ 魔石的序章 網路連線 : 正常';
+        }else{
+            document.title='★天空之城 online ☆ 魔石的序章 網路連線 : 失敗';
+        }
+
+
+        function loadTab(obj,n){
+
+            var layer;
+            eval('layer=\'S'+n+'\'');
+
+            //將 Tab 標籤樣式設成 Blur 型態
+            var tabsF=document.getElementById('tabsF').getElementsByTagName('li');
+            for (var i=0;i<tabsF.length;i++){
+                tabsF[i].setAttribute('id',null);
+                 eval('document.getElementById(\'S'+(i+1)+'\').style.display=\'none\'')
+            }
+
+            //變更分頁標題樣式
+            obj.parentNode.setAttribute('id','current');
+            document.getElementById(layer).style.display='inline';
+        }
+
+        function clearLinkDot() {
+           var i,a,main;
+           for(i=0; (a = document.getElementsByTagName("a")[i]); i++) {
+              if(a.getAttribute("onFocus")==null) {
+                 a.setAttribute("onFocus","this.blur();");
+              }else{
+                 a.setAttribute("onFocus",a.getAttribute("onFocus")+";this.blur();");
+               }
+              a.setAttribute("hideFocus","hidefocus");
+           }
+        }
+
+        function listBtn() {
+            var listBtn = document.getElementById('gosky');
+            var textlistn = document.getElementById('GameInterface');
+            textlistn.style.display = 'block';
+            listBtn.innerText = "";
+        }
+    </script>
+</head>
+<body bgcolor="cornflowerblue" background="https://imgur.com/fiMI1ch.jpg" onload="clearLinkDot();" width="321" height="218">
+    <object type="application/x-shockwave-flash" width="100%" height="100%"> 
+    <param name="movie" value="app:/SWFFile.swf"></param> 
+    <param name="wmode" value="opaque"></param> 
+</object>a
+        <div id="gosky" style="text-align:left;">
+            <font face="monospace">啟動器開發者聯絡 Discord:紅茶#7809</font></br>
+            <embed src="http://web.xidaojia168.com/images/movie.swf" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" name="obj1" width="321" height="218">
+            </br>
+            <button onclick="listBtn()" class="btn">開始遊戲</button>
+        </div>
+
+        <div id="GameInterface" style="display:none;">
+            <div id="tabsF">
+            <ul>
+                <li id="current">
+                    <a href="#" onclick="loadTab(this,1);"><span><input type="textbox" class="btn" style="width:auto;width:120px;height:20px;" value="Label1"></span></a></li>
+                <li><a href="#" onclick="loadTab(this,2);"><span><input type="textbox" class="btn" style="width:auto;width:120px;height:20px;" value="Label2"></span></a></li>
+                <li><a href="#" onclick="loadTab(this,3);"><span><input type="textbox" class="btn" style="width:auto;width:120px;height:20px;" value="Label3"></span></a></li>
+                <li><a href="#" onclick="loadTab(this,4);"><span><input type="textbox" class="btn" style="width:auto;width:120px;height:20px;" value="Label4"></span></a></li>
+                <li><a href="#" onclick="loadTab(this,5);"><span><input type="textbox" class="btn" style="width:auto;width:120px;height:20px;" value="Label5"></span></a></li>
+            </ul>
+        </div>
+        <div id="tabsC">
+            <div id="S1" style="display:inline;">
+                <center><embed movie="http://web.xidaojia168.com/skyonwebData/xun2.swf" type="application/x-shockwave-flash"  base="." width="700" height="500"></center>
+            </div>
+            <div id="S2" style="display:none;">
+                <center><embed movie="http://web.xidaojia168.com/skyonwebData/xun2.swf" type="application/x-shockwave-flash"  base="." width="700" height="500"></center>
+            </div>
+            <div id="S3" style="display:none;">
+                <center><embed movie="http://web.xidaojia168.com/skyonwebData/xun2.swf" type="application/x-shockwave-flash"  base="." width="700" height="500"></center>
+            </div>
+            <div id="S4" style="display:none;">
+                <center><embed movie="http://web.xidaojia168.com/skyonwebData/xun2.swf" type="application/x-shockwave-flash"  base="." width="700" height="500"></center>
+            </div>
+            <div id="S5" style="display:none;">
+                <center><embed movie="http://web.xidaojia168.com/skyonwebData/xun2.swf" type="application/x-shockwave-flash"  base="." width="700" height="500"></center>
+            </div>
+        </div>
+</body>
+</html>
