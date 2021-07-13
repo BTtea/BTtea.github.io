@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>test</title>
+		<style type="text/css">
+			* { 
+				cursor: url(http://cur.cursors-4u.net/games/gam-14/gam1340.cur), auto !important;
+			}
+
+			html {
+	            height: 100%;
+	        }
+
+	        body {
+	            background-image: url(https://imgur.com/3zpwBpB.png);
+	            background-repeat: no-repeat;
+	            background-attachment: fixed;
+	            background-position: center;
+	            background-size: cover;
+	        }
+
+	        p {
+	        	font-size:20px;
+				color:#FF0000;
+				font-weight:bold;
+	        }
+	        h4 {
+	        	font-size:20px;
+				color:#0000C6;
+				font-weight:bold;
+	        }
+
+	        .input_btn {
+				font-size:20px;
+				color:#000000;
+				border:3px orange double;
+				background-color:transparent;
+			}
+
+			.text_word {
+				font-size:20px;
+				color:#ffffff;
+			}
+
+		</style>
+	</head>
+	<script>
+		var count=1,money=10000;
+
+		// 判斷是否為數字
+		function isNumber(val){
+	        var regPos=/^[0-9]+.?[0-9]*/;
+	        return regPos.test(val)?true:false;
+	    }
+
+	    // 判斷是否為整數
+	    function is_Int(num_int) {
+	        return num_int%1==0?true:false;
+	    }
+
+	    // 獲取生成隨機數的範圍
+		function getRandom(min,max){
+	    	return Math.floor(Math.random()*(max-min+1))+min;
+		}
+
+		// 將所點選之按鈕變數賦值給textbox
+		function get_btn_n(n){
+	    	tx1.value=n;
+	    }
+
+	    // 主要程式
+	    function main_go() {
+	    	// 此處開始除錯輸入數值
+	    	if(tx1.value==''){
+	        	alert('請輸入或選擇數字!');
+	        	return;
+	        }
+	    	if(!isNumber(tx1.value) || !is_Int(tx1.value)){
+	            alert('請輸入正整數！');
+	            return;
+	        }
+	        if(tx1.value>9 || tx1.value<1){
+	            alert('請輸入1~9以內的數字！');
+	            return;
+	        }
+	        
+	        // 獲取radio所點選之數值
+	        var temp=parseInt(document.querySelector('input[name="rad"]:checked').value);
+
+	        var str="",pcwin="",x,t;
+
+	        // 隨機選取比大或小
+	        var high_or_low=getRandom(0,1)==0?true:false;
+	        var big_or_little=high_or_low==1?'大':'小';
+
+	        // 電腦隨機生成1~9之隨機數
+	        var rnd=getRandom(1,9);
+
+	        // 判斷輸贏
+	        if(high_or_low){
+	        	money=tx1.value>rnd?money+temp:money-temp;
+	        	pcwin=tx1.value>rnd?'輸':'贏';
+	        }
+	        else{
+	        	money=tx1.value<rnd?money+temp:money-temp;
+	        	pcwin=tx1.value<rnd?'輸':'贏';
+	        }
+
+	        // 存取輸出結果字串
+	        str='第'+(count++)+'回合 , 玩家下注'+temp+' , 比'+big_or_little+' , 玩家數字為 '+tx1.value+' , 電腦數字為 '+rnd+' , 電腦'+pcwin+temp+' , 玩家當前金額為 '+money;
+
+	        // 依照輸贏設定紅藍顏色訊息
+	        if(pcwin=='輸'){
+	        	x = document.createElement("h4");
+	        }
+	        else{
+	        	x = document.createElement("p");
+	        }
+  			t = document.createTextNode(str);
+
+  			// 輸出訊息
+  			x.appendChild(t);
+  			document.body.appendChild(x);
+	    }
+
+	</script>
+
+	<body bgcolor="cornflowerblue">
+		<form>
+			<!--  ======== 1~9的按鈕 ======== -->
+			<input type="button" name="btn1" value="1" class="input_btn" onclick="get_btn_n(1)">
+			<input type="button" name="btn2" value="2" class="input_btn" onclick="get_btn_n(2)">
+			<input type="button" name="btn3" value="3" class="input_btn" onclick="get_btn_n(3)">
+			<input type="button" name="btn4" value="4" class="input_btn" onclick="get_btn_n(4)">
+			<input type="button" name="btn5" value="5" class="input_btn" onclick="get_btn_n(5)">
+			<input type="button" name="btn6" value="6" class="input_btn" onclick="get_btn_n(6)">
+			<input type="button" name="btn7" value="7" class="input_btn" onclick="get_btn_n(7)">
+			<input type="button" name="btn8" value="8" class="input_btn" onclick="get_btn_n(8)">
+			<input type="button" name="btn9" value="9" class="input_btn" onclick="get_btn_n(9)">
+			<!--  ======== 顯示目前所選取之數值 ======== -->
+			<input type="textbox" id="tx1" value="" class="input_btn" style="width:20px;">
+			<br>
+			<p style="color:#005AB5;font-size:20px;">押注</p>
+			<form>
+				<!--  ======== 顯示押注籌碼 ======== -->
+				<input type="radio" name="rad" value="100"><font class="text_word">100 </font><br>
+				<input type="radio" name="rad" value="500"><font class="text_word">500 </font><br>
+				<input type="radio" name="rad" value="1000"><font class="text_word">1000</font><br>
+			</form>
+			<!--  ======== 數值設置好後按下遊玩 ======== -->
+			<input type="button" value="我要發財!" class="input_btn" onclick="main_go()">
+		</form>
+	</body>
+</html>
