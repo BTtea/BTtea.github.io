@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>test</title>
+		<style type="text/css">
+			* { 
+				cursor: url(http://cur.cursors-4u.net/games/gam-14/gam1340.cur), auto !important;
+			}
+
+			html {
+	            height: 100%;
+	        }
+
+	        body {
+	            background-image: url(https://imgur.com/r44OKhR.png);
+	            background-repeat: no-repeat;
+	            background-attachment: fixed;
+	            background-position: center;
+	            background-size: cover;
+	        }
+
+	        .input_btn {
+	        	width:40px;
+				font-size:20px;
+				color:#ffffff;
+				border:3px orange double;
+				background-color:transparent;
+			}
+
+		</style>
+	</head>
+	<script>
+		// 將所點選之按鈕變數賦值給textbox
+		function get_btn_n(n){
+			if(tx1.value==0){
+				tx1.value="";
+			}
+	    	tx1.value+=n;
+	    }
+
+	    // 計算出答案
+	    function answer(){
+	    	tx1.value=eval(tx1.value);
+	    }
+
+	    // 清除字串
+	    function cls(){
+	    	tx1.value=0;
+	    }
+	</script>
+
+	<body bgcolor="cornflowerblue">
+		<center>
+			<form>
+				<!--  ======== 1~9的按鈕 ======== -->
+				<input type="button" name="btn1" value="1" class="input_btn" onclick="get_btn_n(1)">
+				<input type="button" name="btn2" value="2" class="input_btn" onclick="get_btn_n(2)">
+				<input type="button" name="btn3" value="3" class="input_btn" onclick="get_btn_n(3)">
+				<input type="button" name="division" value="/" class="input_btn" onclick="get_btn_n('/')">
+				<br>
+				<input type="button" name="btn4" value="4" class="input_btn" onclick="get_btn_n(4)">
+				<input type="button" name="btn5" value="5" class="input_btn" onclick="get_btn_n(5)">
+				<input type="button" name="btn6" value="6" class="input_btn" onclick="get_btn_n(6)">
+				<input type="button" name="multiplication" value="*" class="input_btn" onclick="get_btn_n('*')">
+				<br>
+				<input type="button" name="btn7" value="7" class="input_btn" onclick="get_btn_n(7)">
+				<input type="button" name="btn8" value="8" class="input_btn" onclick="get_btn_n(8)">
+				<input type="button" name="btn9" value="9" class="input_btn" onclick="get_btn_n(9)">
+				<input type="button" name="add" value="+" class="input_btn" onclick="get_btn_n('+')">
+				<br>
+				<input type="button" name="btn0" value="0" class="input_btn" onclick="get_btn_n(0)">
+
+				<input type="button" name="equ" value="=" class="input_btn" onclick="answer()">
+				<input type="button" name="dot" value="." class="input_btn" onclick="get_btn_n('.')">
+				<input type="button" name="Subtraction" value="-" class="input_btn" onclick="get_btn_n('-')">
+				<br>
+
+
+				<!--  ======== 顯示目前所選取之數值 ======== -->
+				<input type="textbox" id="tx1" value="0" class="input_btn" style="width:118px;">
+				<input type="button" name="clear" value="c" class="input_btn" onclick="cls()">
+				<br>
+				
+			</form>
+		</center>
+	</body>
+</html>
