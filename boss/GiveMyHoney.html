@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>老大生日快樂ㄛ~</title>
+    <style>
+        * {
+            cursor: url(https://cur.cursors-4u.net/smilies/smi-2/smi166.cur), auto !important;
+        }
+
+        html {
+            height: 100%;
+        }
+
+        body {
+            background-image: url(img/happy-birthday.gif);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            height: 100vh;
+        }
+
+        .tx {
+            font-family: 'icomoon';
+            position: absolute;
+            color: #000;
+            font-size: 15px;
+            user-select: none;
+        }
+
+        #banner {
+            text-shadow: 0 0 5px #24a5cc, 0 0 5px #03f4b8;
+            text-align: center;
+            font-size: 40px;
+            color: white;
+        }
+
+        div img {
+            float: right;
+            border-style: double;
+            border-color: #7e5326;
+            padding: 5px;
+            display: none;
+        }
+
+        input {
+            border-radius: 16px;
+            width: 150px;
+            height: 50px;
+            background: #338ded;
+            font-size: 20px;
+            color: white;
+            border-color: #338ded;
+        }
+
+        #con {
+            width: 400px;
+            height: 400px;
+            display: table-cell;
+            vertical-align: bottom;
+        }
+
+    </style>
+    <script src="./jquery-3.6.1.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            var flag = true;
+
+            $('#toggle').click(function () {
+                $('#re').slideToggle(1000, function () {
+                    if (flag) {
+                        alert('我們的第一張合照!');
+                        flag = false;
+                    }
+                    else {
+                        flag = true;
+                    }
+                });
+            })
+
+        });
+    </script>
+</head>
+
+<body>
+    <script>
+        var baba = document.querySelector('body');
+        baba.addEventListener('click', function (e) {
+            tianJia(e);
+        })
+
+        var erZi = [];
+        function tianJia(e) {
+            var sunZi = document.createElement('div');
+            sunZi.className = 'tx';
+            sunZi.innerHTML = '<pre><span style="font-size:40px;"> *</span><br><span style="font-size:40px;">* *</span></pre>';
+            baba.appendChild(sunZi);
+            erZi.push({
+                el: sunZi,
+                top: e.clientY - 50,
+                left: e.clientX - 40,
+                opacity: 1,
+                scale: 1,
+                color: `rgb(${255 * Math.random()},${255 * Math.random()},${255 * Math.random()})`
+            });
+            move();
+        };
+
+        function move() {
+            for (var i = 0; i < erZi.length; i++) {
+                if (erZi[i].opacity <= 0) {
+                    baba.removeChild(erZi[i].el);
+                    erZi.splice(i, 1);
+                    return;
+                }
+                erZi[i].top--;
+                erZi[i].opacity = erZi[i].opacity - 0.01;
+                erZi[i].scale = erZi[i].scale + 0.02;
+                erZi[i].el.style.cssText = `
+              top: ${erZi[i].top}px;
+              left: ${erZi[i].left}px;
+              color: ${erZi[i].color};
+              opacity: ${erZi[i].opacity};
+              transform: scale(${erZi[i].scale});`
+            }
+            window.requestAnimationFrame(move);
+        }
+
+    </script>
+    <br>
+    
+    <div id="MyHoney">
+        <img src="img/us.jpg" width="350" id="re" onclick="alert('老大 : 嘎嘎嘎');alert('嗨老大,你嘎嘎叫ㄛ');">
+        <h1 id="banner" onclick="alert('最愛寶貝 <3')">
+            <i>老大生日快樂~<br>希望你可以永遠笑的那麼可愛 &lt;3</i>
+        </h1>
+        <input type="button" id="toggle" value="這是什麼咧~">
+    </div>
+
+    <div id="con">
+        <h1 id="banner">by 愛你的紅茶</h1>
+    </div>
+    <marquee><img src="img/1.gif"></marquee>
+</body>
+
+</html>
