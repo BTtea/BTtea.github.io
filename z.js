@@ -1,5 +1,1 @@
-export {
-  function a() {
-     alert(1);
-  }
-}
+import('./a.js').then(function(abc){abc.a();});
