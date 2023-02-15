@@ -1,5 +1,5 @@
 export {
-  a: function() {
+  function a() {
      alert(1);
   }
 }
