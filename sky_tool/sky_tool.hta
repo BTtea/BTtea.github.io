@@ -99,7 +99,10 @@
                 confirm(
                     '檢查到新的版本為{0}，是否現在更新?'.format(VersionNumber)
                 ) ? function () {
-                    ExecCmd('curl "https://bttea.github.io/sky_tool/sky_tool.hta" > sky_tool.hta', 'Hide');
+                    ExecCmd(
+                        'curl "https://bttea.github.io/sky_tool/sky_tool.hta" > {0}'.format(window.location.pathname)
+                        , 'Hide'
+                    );
                     location.reload();
                 } : "";
             }
