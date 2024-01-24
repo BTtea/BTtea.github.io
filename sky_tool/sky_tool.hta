@@ -76,7 +76,7 @@
             var shell = new ActiveXObject("WScript.Shell");
 
             if (status == 'Hide') {
-                shell.run('mshta vbscript:createobject("wscript.shell").run("{0}",0)(window.close)'.format(cmd), 0, false);
+                shell.run('mshta vbscript:createobject("wscript.shell").run("cmd /c {0}",0)(window.close)'.format(cmd), 0, false);
                 return;
             }
 
@@ -99,8 +99,8 @@
                 
                 if(confirm('檢查到新的版本為{0}，是否現在更新?'.format(VersionNumber))){
                     ExecCmd(
-                        'curl "https://bttea.github.io/sky_tool/sky_tool.hta" > {0}'.format(window.location.pathname),
-                        'Hide'
+                        'curl "https://bttea.github.io/sky_tool/sky_tool.hta" > sky_tool.hta',
+                        'Result'
                     );
                     window.location.reload();
                 }
