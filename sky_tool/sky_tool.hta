@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <HTA:APPLICATION APPLICATIONNAME="HP" ID="oHTA"></HTA:APPLICATION>
+    <title></title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+        * {
+            cursor: url(http://cur.cursors-4u.net/games/gam-14/gam1340.cur), auto !important;
+            font-size: 24px;
+            font-weight: bold;
+            font-family: 'VT323', monospace;
+        }
+
+        html {
+            overflow: hidden;
+        }
+
+        label {
+            color: #fff;
+        }
+
+        body {
+            background-color: #000;
+            background-image: url("https://i.ytimg.com/vi/87x5eC7CqCM/maxresdefault.jpg");
+            margin: 0;
+            overflow: hidden;
+            background-position: center;
+            background-position: -200px 0;
+        }
+
+        .Button_Style {
+            background-color: black;
+            color: #818181;
+            text-align: center;
+            padding: 10px 20px;
+        }
+
+        .Button_Style:hover {
+            color: white;
+        }
+
+        .fixedButton_LowerRight {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+        }
+
+        .fixedButton_LowerRight #Exit:hover {
+            color: #F26969;
+        }
+    </style>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script language="JavaScript">
+
+        var CurrentVersion = "1.0";
+
+        String.prototype.bool = function () {
+            if (this == "true") return true;
+            if (this == "false") return false;
+            return null;
+        };
+
+        String.prototype.format = function () {
+            var args = arguments;
+            return this.replace(/\{\{|\}\}|\{(\d+)\}/g, function (m, n) {
+                if (m == "{{") { return "{"; }
+                if (m == "}}") { return "}"; }
+                return args[n];
+            });
+        };
+
+        function ExecCmd(cmd, status) {
+            var shell = new ActiveXObject("WScript.Shell");
+
+            if (status == 'Hide') {
+                shell.run('mshta vbscript:createobject("wscript.shell").run("{0}",0)(window.close)'.format(cmd), 0, false);
+                return;
+            }
+
+            if (status == 'NewWindow') {
+                shell.run('cmd /c "start {0}"'.format(cmd), 0, false);
+                return;
+            }
+
+            if (status == 'Result') {
+                var objExec = shell.Exec('cmd /c @echo off&{0}'.format(cmd));
+                var strOutput = objExec.StdOut.ReadAll();
+                return strOutput;
+            }
+            return;
+        }
+
+        function CheckUpdate() {
+            var VersionNumber = ExecCmd('curl "https://bttea.github.io/sky_tool/version.txt"', 'Result');
+            if (parseFloat(VersionNumber) > parseFloat(CurrentVersion)) {
+                confirm(
+                    '檢查到新的版本為{0}，是否現在更新?'.format(VersionNumber)
+                ) ? function () {
+                    ExecCmd('curl "https://bttea.github.io/sky_tool/sky_tool.hta" > sky_tool.hta', 'Hide');
+                    location.reload();
+                } : "";
+            }
+            else {
+                alert('當前版本已經為最新');
+            }
+        }
+
+
+        // jquery
+        $(document).ready(function () {
+
+            $("#Version").text('v{0} '.format(CurrentVersion));
+
+            // hp.py不存在則不顯示該元素
+            var HPScript = ExecCmd('if exist hp.py (echo|set /p="true") else echo|set /p="false"', 'Result');
+            if (!HPScript.bool()) {
+                $("#HP").css('display', 'none');
+            }
+
+            $("#HP #HPBtn").click(function () {
+                if ($("#HP #HPBtn").val() == '補血') {
+
+                    if ($("#HP #Sec").val() == '' || $("#HP #PressKey").val() == '')
+                        return;
+
+                    $("#HP #HPBtn").val('停止');
+                    ExecCmd(
+                        'py hp.py {0} {1}'.format($("#HP #Sec").val(), $("#HP #PressKey").val()),
+                        'Hide'
+                    );
+                }
+                else {
+                    $("#HP #HPBtn").val('補血');
+                    ExecCmd(
+                        'taskkill /f /im py.exe',
+                        'Hide'
+                    );
+                }
+
+            });
+
+        });
+
+
+        // 調整開啟視窗大小
+        window.resizeTo(550, 400);
+        document.title = 'sky tool v{0}'.format(CurrentVersion);
+
+    </script>
+</head>
+
+<body>
+    <div id="HP">
+        <label>秒數</label>
+        <input type="text" id="Sec" value=""><br>
+        <label>按鍵</label>
+        <input type="text" id="PressKey" value=""><br>
+        <input type="submit" class="Button_Style" id="HPBtn" value="補血">
+    </div>
+
+
+
+    <div class="fixedButton_LowerRight">
+        <label id="Version"></label>
+        <input type="button" class="Button_Style" value="檢查更新" onclick="CheckUpdate()">
+        <!-- Exit -->
+        <input type="button" class="Button_Style" id="Exit" value="離開" onclick="window.close(0)">
+    </div>
+</body>
+
+</html>
