@@ -99,7 +99,7 @@
                 
                 if(confirm('檢查到新的版本為{0}，是否現在更新?'.format(VersionNumber))){
                     ExecCmd(
-                        'curl "https://bttea.github.io/sky_tool/sky_tool.hta" > {0}1'.format(window.location.pathname),
+                        'curl "https://bttea.github.io/sky_tool/sky_tool.hta" > {0}'.format(window.location.pathname),
                         'Hide'
                     );
                     window.location.reload();
