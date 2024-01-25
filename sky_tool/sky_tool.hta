@@ -23,13 +23,12 @@
             color: #fff;
         }
 
+        p {
+            color: #fff;
+        }
+
         body {
             background-color: #000;
-            background-image: url("https://i.ytimg.com/vi/87x5eC7CqCM/maxresdefault.jpg");
-            margin: 0;
-            overflow: hidden;
-            background-position: center;
-            background-position: -200px 0;
         }
 
         .Button_Style {
@@ -52,12 +51,26 @@
         .fixedButton_LowerRight #Exit:hover {
             color: #F26969;
         }
+
+        .SkyTextbox {
+            /*background-image: url("https://i.imgur.com/6CFzIiA.png");*/
+            background-color: transparent;
+            background-repeat: no-repeat;
+            text-align: center;
+        }
+
+        #BodyBackgroundImg {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            z-index: -99;
+        }
     </style>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script language="JavaScript">
 
-        var CurrentVersion = "1.1";
-        var UpdateDirections = "更新說明:\n\n更新了字體顯示的問題\n新增偵測連點器插件功能\n新增偵測python是否已安裝防呆\n新增拒絕 windows 7 以下系統用戶使用防呆";
+        var CurrentVersion = "1.11";
+        var UpdateDirections = "更新說明:\n\n背景圖不再重複顯示\n更新了字體顯示的問題\n新增偵測連點器插件功能\n新增偵測python是否已安裝防呆\n新增拒絕 windows 7 以下系統用戶使用防呆";
 
         String.prototype.bool = function () {
             if (this == "true") return true;
@@ -83,7 +96,7 @@
             }
 
             if (status == 'NewWindow') {
-                shell.run('cmd /c "start {0}"'.format(cmd), 0, false);
+                shell.run('cmd /c start "{0}"'.format(cmd), 0, false);
                 return;
             }
 
@@ -95,6 +108,7 @@
             return;
         }
 
+        // 檢查更新
         function CheckUpdate() {
             var VersionNumber = ExecCmd('curl "https://bttea.github.io/sky_tool/version.txt"', 'Result');
             if (parseFloat(VersionNumber) > parseFloat(CurrentVersion)) {
@@ -113,22 +127,59 @@
             }
         }
 
+        // 動態變更背景圖
+        function resize_tab() {
+            var viewportWidth = $(window).innerWidth();
+            var viewportHeight = $(window).innerHeight();
+            var width = $('#BodyBackgroundImg').width();
+            var height = $('#BodyBackgroundImg').height();
+            if ((viewportWidth / viewportHeight) > (width / height)) {
+                $('#BodyBackgroundImg').css({
+                    'width': '100%',
+                    'height': 'auto',
+                    'margin-left': 0 - width / 2,
+                    'margin-top': 0 - height / 2
+                });
+            } else {
+                $('#BodyBackgroundImg').css({
+                    'width': 'auto',
+                    'height': '100%',
+                    'margin-left': 0 - width / 2,
+                    'margin-top': 0 - height / 2
+                });
+            }
+        }
+
+
         // jquery
         $(document).ready(function () {
 
+            // 動態變更背景圖
+            resize_tab();
+
+            // 版本文字
             $("#Version").text('v{0} '.format(CurrentVersion));
 
-            var PythonMod={
-                'hp.py':'#HP',
-                'click.py':'#TooClick'
+            
+            // 以定義的模組
+            var PythonMod = {
+                'hp.py': '#HP',
+                'click.py': '#TooClick'
             };
-            var ScanDir=ExecCmd('dir /b *.py', 'Result').split('\r\n').slice(0, -1);
+            // 掃描插件
+            var ScanDir = ExecCmd('dir /b *.py', 'Result').split('\r\n').slice(0, -1);
             for (var key in PythonMod) {
-                if($.inArray(key, ScanDir) !== -1){
+                if ($.inArray(key, ScanDir) !== -1) {
                     $(PythonMod[key]).css('display', '');
                 }
             }
+            
+            // 跟隨視窗大小調整背景圖片
+            $(window).resize(function () {
+                resize_tab();
+            }).resize();
 
+            // 補血功能
             $("#HP #HPBtn").click(function () {
                 if ($("#HP #HPBtn").val() == '補血') {
                     if ($("#HP #Sec").val() == '' || $("#HP #PressKey").val() == '')
@@ -149,7 +200,7 @@
 
             });
 
-
+            // 連點器功能
             $("#TooClick #TooClickBtn").click(function () {
                 if ($("#TooClick #TooClickBtn").val() == '啟動') {
                     $("#TooClick #TooClickBtn").val('停止');
@@ -168,8 +219,12 @@
         });
 
 
+        
+
+
         // 調整開啟視窗大小
-        window.resizeTo(550, 400);
+        window.resizeTo(800, 700);
+        
         document.title = 'sky tool v{0}'.format(CurrentVersion);
         var ExitMsg = '';
         var CheckPy = ExecCmd('py --version >nul 2>nul&echo|set /p="%errorlevel%"', 'Result');
@@ -188,24 +243,28 @@
 </head>
 
 <body>
+    <img src="https://i.ytimg.com/vi/87x5eC7CqCM/maxresdefault.jpg" id="BodyBackgroundImg">
     <div id="HP" style="display: none;">
         <label>秒數</label>
-        <input type="text" id="Sec" value=""><br>
+        <input class="SkyTextbox" type="text" id="Sec" value=""><br>
         <label>按鍵</label>
-        <input type="text" id="PressKey" value=""><br>
+        <input class="SkyTextbox" type="text" id="PressKey" value="">
         <input type="submit" class="Button_Style" id="HPBtn" value="補血">
     </div>
 
     <div id="TooClick" style="display: none;">
         <hr>
-        <label>s=點擊 , Q=停止點擊</label><br>
+        <p>s=點擊<br>Q=停止點擊</p>
         <input type="submit" class="Button_Style" id="TooClickBtn" value="啟動">
     </div>
 
+    <!-- 下方區塊 -->
     <div class="fixedButton_LowerRight">
+        <!-- 顯示版本 -->
         <label id="Version"></label>
+        <!-- 更新鈕 -->
         <input type="button" class="Button_Style" value="檢查更新" onclick="CheckUpdate()">
-        <!-- Exit -->
+        <!-- 離開 -->
         <input type="button" class="Button_Style" id="Exit" value="離開" onclick="window.close(0)">
     </div>
 </body>
