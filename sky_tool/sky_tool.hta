@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <meta charset="big5">
     <HTA:APPLICATION APPLICATIONNAME="HP" ID="oHTA"></HTA:APPLICATION>
     <title></title>
     <style>
@@ -55,7 +56,8 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script language="JavaScript">
 
-        var CurrentVersion = "1.0";
+        var CurrentVersion = "1.1";
+        var UpdateDirections = "更新說明:\n\n更新了字體顯示的問題\n新增偵測連點器插件功能\n新增偵測python是否已安裝防呆\n新增拒絕 windows 7 以下系統用戶使用防呆";
 
         String.prototype.bool = function () {
             if (this == "true") return true;
@@ -96,12 +98,13 @@
         function CheckUpdate() {
             var VersionNumber = ExecCmd('curl "https://bttea.github.io/sky_tool/version.txt"', 'Result');
             if (parseFloat(VersionNumber) > parseFloat(CurrentVersion)) {
-                
-                if(confirm('檢查到新的版本為{0}，是否現在更新?'.format(VersionNumber))){
+
+                if (confirm('檢查到新的版本為{0}，是否現在更新?'.format(VersionNumber))) {
                     ExecCmd(
                         'curl "https://bttea.github.io/sky_tool/sky_tool.hta" > sky_tool.hta',
                         'Result'
                     );
+                    alert(UpdateDirections);
                     window.location.reload();
                 }
             }
@@ -115,18 +118,19 @@
 
             $("#Version").text('v{0} '.format(CurrentVersion));
 
-            // hp.py不存在則不顯示該元素
-            var HPScript = ExecCmd('if exist hp.py (echo|set /p="true") else echo|set /p="false"', 'Result');
-            if (!HPScript.bool()) {
-                $("#HP").css('display', 'none');
+            // hp.py 不存在則不顯示該元素
+            if (ExecCmd('if exist hp.py (echo|set /p="true") else echo|set /p="false"', 'Result').bool()) {
+                $("#HP").css('display', '');
+            }
+            // click.py 不存在則不顯示該元素
+            if (ExecCmd('if exist click.py (echo|set /p="true") else echo|set /p="false"', 'Result').bool()) {
+                $("#TooClick").css('display', '');
             }
 
             $("#HP #HPBtn").click(function () {
                 if ($("#HP #HPBtn").val() == '補血') {
-
                     if ($("#HP #Sec").val() == '' || $("#HP #PressKey").val() == '')
                         return;
-
                     $("#HP #HPBtn").val('停止');
                     ExecCmd(
                         'py hp.py {0} {1}'.format($("#HP #Sec").val(), $("#HP #PressKey").val()),
@@ -143,18 +147,46 @@
 
             });
 
+
+            $("#TooClick #TooClickBtn").click(function () {
+                if ($("#TooClick #TooClickBtn").val() == '啟動') {
+                    $("#TooClick #TooClickBtn").val('停止');
+                    ExecCmd('py click.py', 'Hide');
+                }
+                else {
+                    $("#TooClick #TooClickBtn").val('啟動');
+                    ExecCmd(
+                        'taskkill /f /im py.exe',
+                        'Hide'
+                    );
+                }
+
+            });
+
         });
 
 
         // 調整開啟視窗大小
         window.resizeTo(550, 400);
         document.title = 'sky tool v{0}'.format(CurrentVersion);
-
+        var ExitMsg = '';
+        var CheckPy = ExecCmd('py --version >nul 2>nul&echo|set /p="%errorlevel%"', 'Result');
+        var CheckWin = ExecCmd('for /f "tokens=1-5 delims== " %a in (\'wmic os get Caption /value ^| find "Caption"\') do echo|set /p="%d"', 'Result');
+        if (CheckPy != 0) {
+            ExitMsg += '請先安裝python\n';
+        }
+        if (CheckWin != 11 && CheckWin != 10) {
+            ExitMsg += '僅可在windows 10與11上使用\n';
+        }
+        if (ExitMsg != '') {
+            alert(ExitMsg);
+            window.close(0);
+        }
     </script>
 </head>
 
 <body>
-    <div id="HP">
+    <div id="HP" style="display: none;">
         <label>秒數</label>
         <input type="text" id="Sec" value=""><br>
         <label>按鍵</label>
@@ -162,7 +194,11 @@
         <input type="submit" class="Button_Style" id="HPBtn" value="補血">
     </div>
 
-
+    <div id="TooClick" style="display: none;">
+        <hr>
+        <label>s=點擊 , Q=停止點擊</label><br>
+        <input type="submit" class="Button_Style" id="TooClickBtn" value="啟動">
+    </div>
 
     <div class="fixedButton_LowerRight">
         <label id="Version"></label>
