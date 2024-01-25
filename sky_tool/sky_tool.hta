@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="big5">
-    <HTA:APPLICATION APPLICATIONNAME="HP" ID="oHTA"></HTA:APPLICATION>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+    <HTA:APPLICATION APPLICATIONNAME="SkyTool" ID="oHTA"></HTA:APPLICATION>
     <title></title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
@@ -21,24 +22,52 @@
 
         label {
             color: #fff;
+            font-family: 'Noto Sans TC', sans-serif;
         }
 
         p {
             color: #fff;
+            font-family: 'Noto Sans TC', sans-serif;
         }
 
         body {
             background-color: #000;
         }
 
-        .Button_Style {
-            background-color: black;
-            color: #818181;
-            text-align: center;
-            padding: 10px 20px;
+        .TextboxStyleDiv {
+            background-image: url(./images/textbox.png);
+            background-repeat: no-repeat;
+            height: 66px;
+            background-size: cover;
         }
 
-        .Button_Style:hover {
+        .TextboxStyle {
+            background-color: transparent;
+            text-align: center;
+            height: 60px;
+            width: 276px;
+            font-size: 44px;
+            margin-top: 4px;
+            border-style: none;
+        }
+
+        .ButtonStyleDiv {
+            background-image: url(./images/button.png);
+            background-repeat: no-repeat;
+            background-size: auto;
+        }
+
+        .ButtonStyle {
+            color: #6DE7DC;
+            background-color: transparent;
+            height: 42px;
+            width: 146px;
+            font-weight: bold;
+            font-size: 24px;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        .ButtonStyle:hover {
             color: white;
         }
 
@@ -52,13 +81,6 @@
             color: #F26969;
         }
 
-        .SkyTextbox {
-            /*background-image: url("https://i.imgur.com/6CFzIiA.png");*/
-            background-color: transparent;
-            background-repeat: no-repeat;
-            text-align: center;
-        }
-
         #BodyBackgroundImg {
             position: fixed;
             top: 50%;
@@ -69,8 +91,8 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script language="JavaScript">
 
-        var CurrentVersion = "1.11";
-        var UpdateDirections = "更新說明:\n\n背景圖不再重複顯示\n更新了字體顯示的問題\n新增偵測連點器插件功能\n新增偵測python是否已安裝防呆\n新增拒絕 windows 7 以下系統用戶使用防呆";
+        var CurrentVersion = "1.12";
+        var UpdateDirections = "更新說明:\n\n更新按鈕與輸入框的排版與圖像\n字體優化\n";
 
         String.prototype.bool = function () {
             if (this == "true") return true;
@@ -160,7 +182,7 @@
             // 版本文字
             $("#Version").text('v{0} '.format(CurrentVersion));
 
-            
+
             // 以定義的模組
             var PythonMod = {
                 'hp.py': '#HP',
@@ -173,25 +195,25 @@
                     $(PythonMod[key]).css('display', '');
                 }
             }
-            
+
             // 跟隨視窗大小調整背景圖片
             $(window).resize(function () {
                 resize_tab();
             }).resize();
 
             // 補血功能
-            $("#HP #HPBtn").click(function () {
-                if ($("#HP #HPBtn").val() == '補血') {
-                    if ($("#HP #Sec").val() == '' || $("#HP #PressKey").val() == '')
+            $("#HP .ButtonStyleDiv #HPBtn").click(function () {
+                if ($("#HP .ButtonStyleDiv #HPBtn").val() == '補血') {
+                    if ($("#HP .TextboxStyleDiv #Sec").val() == '' || $("#HP .TextboxStyleDiv #PressKey").val() == '')
                         return;
-                    $("#HP #HPBtn").val('停止');
+                    $("#HP .ButtonStyleDiv #HPBtn").val('停止');
                     ExecCmd(
-                        'py hp.py {0} {1}'.format($("#HP #Sec").val(), $("#HP #PressKey").val()),
+                        'py hp.py {0} {1}'.format($("#HP .TextboxStyleDiv #Sec").val(), $("#HP .TextboxStyleDiv #PressKey").val()),
                         'Hide'
                     );
                 }
                 else {
-                    $("#HP #HPBtn").val('補血');
+                    $("#HP .ButtonStyleDiv #HPBtn").val('補血');
                     ExecCmd(
                         'taskkill /f /im py.exe',
                         'Hide'
@@ -219,12 +241,12 @@
         });
 
 
-        
+
 
 
         // 調整開啟視窗大小
         window.resizeTo(800, 700);
-        
+
         document.title = 'sky tool v{0}'.format(CurrentVersion);
         var ExitMsg = '';
         var CheckPy = ExecCmd('py --version >nul 2>nul&echo|set /p="%errorlevel%"', 'Result');
@@ -243,29 +265,50 @@
 </head>
 
 <body>
-    <img src="https://i.ytimg.com/vi/87x5eC7CqCM/maxresdefault.jpg" id="BodyBackgroundImg">
+    <!-- 背景 -->
+    <img src="https://i.imgur.com/EyLSI95.png" id="BodyBackgroundImg">
+    <!-- 補血 -->
     <div id="HP" style="display: none;">
         <label>秒數</label>
-        <input class="SkyTextbox" type="text" id="Sec" value=""><br>
+        <div class="TextboxStyleDiv">
+            <input class="TextboxStyle" type="text" id="Sec" value="">
+        </div>
         <label>按鍵</label>
-        <input class="SkyTextbox" type="text" id="PressKey" value="">
-        <input type="submit" class="Button_Style" id="HPBtn" value="補血">
+        <div class="TextboxStyleDiv">
+            <input class="TextboxStyle" type="text" id="PressKey" value="">
+        </div>
+        <br>
+        <div class="ButtonStyleDiv">
+            <input type="submit" class="ButtonStyle" id="HPBtn" value="補血">
+        </div>
     </div>
 
+    <!-- 連點器 -->
     <div id="TooClick" style="display: none;">
         <hr>
         <p>s=點擊<br>Q=停止點擊</p>
-        <input type="submit" class="Button_Style" id="TooClickBtn" value="啟動">
+        <div class="ButtonStyleDiv">
+            <input type="submit" class="ButtonStyle" id="TooClickBtn" value="啟動">
+        </div>
+
     </div>
 
     <!-- 下方區塊 -->
     <div class="fixedButton_LowerRight">
+
         <!-- 顯示版本 -->
         <label id="Version"></label>
+
         <!-- 更新鈕 -->
-        <input type="button" class="Button_Style" value="檢查更新" onclick="CheckUpdate()">
+        <div class="ButtonStyleDiv">
+            <input type="submit" class="ButtonStyle" value="檢查更新" onclick="CheckUpdate()">
+        </div>
+
         <!-- 離開 -->
-        <input type="button" class="Button_Style" id="Exit" value="離開" onclick="window.close(0)">
+        <div class="ButtonStyleDiv">
+            <input type="submit" class="ButtonStyle" id="Exit" value="離開" onclick="window.close(0)">
+        </div>
+
     </div>
 </body>
 
