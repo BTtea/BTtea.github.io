@@ -118,13 +118,15 @@
 
             $("#Version").text('v{0} '.format(CurrentVersion));
 
-            // hp.py 不存在則不顯示該元素
-            if (ExecCmd('if exist hp.py (echo|set /p="true") else echo|set /p="false"', 'Result').bool()) {
-                $("#HP").css('display', '');
-            }
-            // click.py 不存在則不顯示該元素
-            if (ExecCmd('if exist click.py (echo|set /p="true") else echo|set /p="false"', 'Result').bool()) {
-                $("#TooClick").css('display', '');
+            var PythonMod={
+                'hp.py':'#HP',
+                'click.py':'#TooClick'
+            };
+            var ScanDir=ExecCmd('dir /b *.py', 'Result').split('\r\n').slice(0, -1);
+            for (var key in PythonMod) {
+                if($.inArray(key, ScanDir) !== -1){
+                    $(PythonMod[key]).css('display', '');
+                }
             }
 
             $("#HP #HPBtn").click(function () {
