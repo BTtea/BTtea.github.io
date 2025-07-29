@@ -1,10 +1,10 @@
 <?php
-function filter_xss($payload){
-    $payload=str_replace(">","",$payload);
-    $payload=str_replace("<","",$payload);
-    $payload=str_replace("'","",$payload);
-    $payload=str_replace("(","",$payload);
-    $payload=str_replace(")","",$payload);
+function filter_xss($payload) {
+    $payload = str_replace(
+        [">", "<", "'", "(", ")"],
+        "",
+        $payload
+    );
     return $payload;
 }
 
