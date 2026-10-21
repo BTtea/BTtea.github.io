@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>PEAK - 臺灣探險之旅</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+    <link
+        rel="icon"
+        type="image/x-icon"
+        href="assets/favicon.ico"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     BACKGROUND MUSIC
+========================================================= -->
+
+<audio
+    id="bgm"
+    src="assets/audio/bgm.mp3"
+    loop
+    preload="auto">
+</audio>
+
+
+<!-- =========================================================
+     PEAK CUSTOM CURSOR
+========================================================= -->
+
+<div
+    id="peakCursor"
+    class="peak-cursor"
+    aria-hidden="true">
+
+    <svg
+        class="cursor-icon"
+        width="32"
+        height="38"
+        viewBox="0 0 32 38"
+        xmlns="http://www.w3.org/2000/svg">
+
+        <path
+            d="
+                M4 2
+                L5 30
+                L12 24
+                L17 36
+                L22 33
+                L16 22
+                L27 21
+                Z
+            "
+            fill="#182019"
+            stroke="#182019"
+            stroke-width="3"
+            stroke-linejoin="round"
+        />
+
+        <path
+            d="
+                M6 5
+                L7 27
+                L13 22
+                L18 33
+                L20 31
+                L15 20
+                L24 19
+                Z
+            "
+            fill="#f1e4c8"
+            stroke="#d5bd82"
+            stroke-width="1.5"
+            stroke-linejoin="round"
+        />
+
+    </svg>
+
+</div>
+
+
+<!-- =========================================================
+     TOP BAR
+========================================================= -->
+
+<header class="topbar">
+
+    <button
+        class="brand"
+        id="homeBtn"
+        type="button"
+    >
+
+        <span class="brand-mark">
+            <img src="assets/images/PEAK.jpg">
+        </span>
+
+        <span>
+            PEAK
+        </span>
+
+    </button>
+
+
+    <div class="top-status">
+
+        <span>
+            臺灣探險之旅
+        </span>
+
+        <span class="status-dot"></span>
+
+        <span id="currentRegion">
+            營地🏕️
+        </span>
+
+    </div>
+
+
+    <button
+        class="music-btn"
+        id="musicBtn"
+        type="button"
+    >
+        ♪ BGM ON
+    </button>
+
+</header>
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<main>
+
+
+<!-- =========================================================
+     HOME
+========================================================= -->
+
+<section
+    id="homeView"
+    class="view active"
+>
+
+    <div class="hero">
+
+        <div class="hero-overlay"></div>
+
+
+        <div class="hero-content">
+
+            <p class="eyebrow">
+                CO-OP MEMORY EXPEDITION
+            </p>
+
+
+            <h1>
+                PEAK
+            </h1>
+
+
+            <h2>
+                臺灣之旅
+            </h2>
+
+
+            <p class="hero-copy">
+
+                8 天 · 3 大區域 · 1 場探險 !!
+
+                <br>
+
+                🏔️ 一起爬山，探險不斷 ✨
+
+            </p>
+
+
+            <div
+                class="region-grid"
+                id="regionGrid">
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             EXPEDITION STATUS
+        ================================================= -->
+
+        <div class="expedition-panel">
+
+            <div class="panel-title">
+
+                <span>guagua 的探險狀態</span>
+
+                <img
+                    class="avatar"
+                    src="assets/images/head_pic.jpg"
+                    alt="GuaGua"
+                >
+
+                <div
+                    id="statusBlocks"
+                    class="status-blocks"
+                ></div>
+
+            </div>
+            
+
+
+            <div class="stats">
+
+                <div>
+
+                    <b>
+                        08
+                    </b>
+
+                    <span>
+                        天
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <b>
+                        03
+                    </b>
+
+                    <span>
+                        區域
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <b id="photoCount">
+                        00
+                    </b>
+
+                    <span>
+                        合照
+                    </span>
+
+                </div>
+
+
+                <div>
+
+                    <b>
+                        ∞
+                    </b>
+
+                    <span>
+                        回憶
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     REGION
+========================================================= -->
+
+<section
+    id="regionView"
+    class="view"
+>
+
+    <div class="region-page">
+
+
+        <div class="region-heading">
+
+
+            <button
+                class="back-btn"
+                id="backHome"
+                type="button"
+            >
+
+                ← 返回營地🏕️
+
+            </button>
+
+
+            <div>
+
+                <p
+                    class="eyebrow"
+                    id="regionNumber"
+                >
+
+                    地區 01 / 03
+
+                </p>
+
+
+                <h2 id="regionTitle">
+                    臺北
+                </h2>
+
+
+                <p id="regionDates">
+                    10/18 — 10/20
+                </p>
+
+            </div>
+
+
+            <div
+                class="difficulty"
+                id="difficulty"
+            >
+
+                ❓❓❓
+
+            </div>
+
+        </div>
+
+
+        <div class="day-layout">
+
+
+            <aside
+                class="day-nav"
+                id="dayNav">
+            </aside>
+
+
+            <div class="album-area">
+
+
+                <div class="album-header">
+
+
+                    <div>
+
+                        <span class="album-kicker">
+                            探險日誌
+                        </span>
+
+
+                        <h3 id="dayTitle">
+                            10 / 18 — DAY 01
+                        </h3>
+
+                    </div>
+
+
+                    <div class="album-tools">
+
+                        <button
+                            id="prevDay"
+                            type="button"
+                        >
+                            ←
+                        </button>
+
+
+                        <button
+                            id="nextDay"
+                            type="button"
+                        >
+                            →
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="album-paper">
+
+
+                    <div class="paper-tape tape-a"></div>
+
+                    <div class="paper-tape tape-b"></div>
+
+
+                    <div
+                        class="photo-grid"
+                        id="photoGrid">
+                    </div>
+
+
+                    <div class="memory-note">
+
+                        <span class="note-icon">
+                            ✦
+                        </span>
+
+
+                        <div>
+
+                            <strong>
+                                🏕️ 探險筆記
+                            </strong>
+
+
+                            <p id="dayNote">
+                                今天的冒險紀錄。
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+<!-- =========================================================
+     PHOTO LIGHTBOX
+========================================================= -->
+
+<div
+    class="lightbox"
+    id="lightbox"
+    aria-hidden="true"
+>
+
+    <button
+        class="lightbox-close"
+        id="lightboxClose"
+        type="button"
+        aria-label="Close"
+    >
+        ×
+    </button>
+
+
+    <button
+        class="lightbox-arrow left"
+        id="lightboxPrev"
+        type="button"
+        aria-label="Previous photo"
+    >
+        ‹
+    </button>
+
+
+    <figure>
+
+        <img
+            id="lightboxImage"
+            src=""
+            alt=""
+        >
+
+
+        <figcaption
+            id="lightboxCaption">
+        </figcaption>
+
+    </figure>
+
+
+    <button
+        class="lightbox-arrow right"
+        id="lightboxNext"
+        type="button"
+        aria-label="Next photo"
+    >
+        ›
+    </button>
+
+</div>
+
+
+<!-- =========================================================
+     FINAL ENDING
+========================================================= -->
+
+<div
+    id="finalEnding"
+    class="final-ending"
+    aria-hidden="true"
+>
+
+
+    <button
+        id="finalClose"
+        class="final-close"
+        type="button"
+        aria-label="Close"
+    >
+        ×
+    </button>
+
+
+    <div class="final-content">
+
+
+        <div
+            id="summitMessage"
+            class="summit-message"
+        >
+            成功登頂！<br>🎉🎉🎉
+        </div>
+
+
+        <div
+            id="finalPhoto"
+            class="final-photo"
+        >
+
+            <div class="final-title">
+                再見臺灣！✈️✈️✈️
+            </div>
+
+
+            <img
+                src="assets/images/final.jpg"
+                alt="再見臺灣"
+            >
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

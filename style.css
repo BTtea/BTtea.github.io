@@ -1,0 +1,3024 @@
+@import url(
+    'https://fonts.googleapis.com/css2?family=Anton&family=DM+Mono:wght@400;500&family=Noto+Sans+TC:wght@400;600;800&display=swap'
+);
+
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root {
+
+    --green:
+        #758f39;
+
+    --green-dark:
+        #25331d;
+
+    --yellow:
+        #e2ad45;
+
+    --cream:
+        #f1e4c8;
+
+    --paper:
+        #e8d5aa;
+
+    --ink:
+        #22261e;
+
+    --wood:
+        #513d27;
+
+    --wood-dark:
+        #2d241a;
+
+    --red:
+        #9d402d;
+
+    --shadow:
+        0 18px 50px rgba(0,0,0,.45);
+
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+
+    box-sizing:
+        border-box;
+
+}
+
+
+html {
+
+    scroll-behavior:
+        smooth;
+
+}
+
+
+body {
+
+    margin:
+        0;
+
+    min-height:
+        100vh;
+
+    color:
+        #f4ead6;
+
+    background:
+        #11150f;
+
+    font-family:
+        'Noto Sans TC',
+        system-ui,
+        sans-serif;
+
+    overflow-x:
+        hidden;
+
+}
+
+
+/* =========================================================
+   HIDE ORIGINAL CURSOR
+========================================================= */
+
+html,
+body {
+
+    cursor:
+        none;
+
+}
+
+
+button,
+a,
+.region-card,
+.day-button,
+.photo-card,
+.lightbox-close,
+.lightbox-arrow {
+
+    cursor:
+        none !important;
+
+}
+
+
+button {
+
+    font:
+        inherit;
+
+}
+
+
+button:focus-visible {
+
+    outline:
+        3px solid var(--yellow);
+
+    outline-offset:
+        3px;
+
+}
+
+
+/* =========================================================
+   FILM GRAIN
+========================================================= */
+
+body::before {
+
+    content:
+        "";
+
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    pointer-events:
+        none;
+
+    z-index:
+        100;
+
+    opacity:
+        .035;
+
+    background-image:
+
+        url(
+            "data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E"
+        );
+
+}
+
+
+/* =========================================================
+   TOP BAR
+========================================================= */
+
+.topbar {
+
+    position:
+        fixed;
+
+    top:
+        0;
+
+    left:
+        0;
+
+    right:
+        0;
+
+    height:
+        66px;
+
+    z-index:
+        40;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    padding:
+        0 28px;
+
+    background:
+
+        linear-gradient(
+            180deg,
+            rgba(9,12,8,.95),
+            rgba(9,12,8,.55)
+        );
+
+    border-bottom:
+        1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:
+        blur(8px);
+
+}
+
+
+.brand {
+
+    border:
+        0;
+
+    background:
+        none;
+
+    color:
+        white;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+    font-family:
+        Anton,
+        sans-serif;
+
+    font-size:
+        25px;
+
+    letter-spacing:
+        2px;
+
+}
+
+
+.brand-mark {
+
+    color:
+        var(--yellow);
+
+    font-size:
+        28px;
+
+}
+
+
+.top-status {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        10px;
+
+    color:
+        #c9c4b3;
+
+    font:
+        20px 'DM Mono',
+        monospace;
+
+    letter-spacing:
+        1px;
+
+}
+
+
+.status-dot {
+
+    width:
+        7px;
+
+    height:
+        7px;
+
+    border-radius:
+        50%;
+
+    background:
+        #91a94d;
+
+    box-shadow:
+        0 0 12px #91a94d;
+
+}
+
+
+/* =========================================================
+   MUSIC
+========================================================= */
+
+.music-btn {
+
+    border:
+        1px solid rgba(255,255,255,.18);
+
+    background:
+        rgba(20,25,17,.75);
+
+    color:
+        #d9cfb9;
+
+    padding:
+        8px 13px;
+
+    border-radius:
+        5px;
+
+    font:
+        16px 'DM Mono',
+        monospace;
+
+    letter-spacing:
+        1px;
+
+    transition:
+        .2s background,
+        .2s color,
+        .2s border-color;
+
+    backdrop-filter:
+        blur(6px);
+
+}
+
+
+.music-btn:hover {
+
+    background:
+        rgba(113,139,61,.85);
+
+    border-color:
+        #9db35c;
+
+    color:
+        white;
+
+}
+
+
+.music-btn.muted {
+
+    color:
+        #817b6c;
+
+    border-color:
+        rgba(255,255,255,.08);
+
+}
+
+
+/* =========================================================
+   VIEW
+========================================================= */
+
+.view {
+
+    display:
+        none;
+
+    min-height:
+        100vh;
+
+}
+
+
+.view.active {
+
+    display:
+        block;
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+
+    position:
+        relative;
+
+    min-height:
+        100vh;
+
+    overflow:
+        hidden;
+
+    display:
+        flex;
+
+    align-items:
+        flex-end;
+
+    padding:
+        110px
+        7vw
+        70px;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(12,18,12,.90),
+            rgba(12,18,12,.45),
+            rgba(12,18,12,.12)
+        ),
+
+        linear-gradient(
+            0deg,
+            rgba(10,14,9,.96),
+            transparent 48%
+        ),
+
+        url("assets/images/peak-trip-art.png")
+        center top / cover no-repeat,
+
+        #18231b;
+
+}
+
+
+.hero-overlay {
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    background:
+
+        radial-gradient(
+            circle at 70% 25%,
+            rgba(130,160,80,.12),
+            transparent 35%
+        );
+
+}
+
+
+.hero-content {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    max-width:
+        620px;
+
+}
+
+
+.eyebrow {
+
+    margin:
+        0 0 8px;
+
+    color:
+        var(--yellow);
+
+    font:
+        500 12px 'DM Mono',
+        monospace;
+
+    letter-spacing:
+        2px;
+
+}
+
+
+.hero h1 {
+
+    margin:
+        0;
+
+    font:
+        110px/.85 Anton,
+        sans-serif;
+
+    letter-spacing:
+        3px;
+
+    color:
+        #f5eddc;
+
+    text-shadow:
+
+        5px 7px 0 #26301e,
+
+        0 14px 40px rgba(0,0,0,.45);
+
+}
+
+
+.hero h2 {
+
+    margin:
+        12px 0 18px;
+
+    font:
+        36px/1 Anton,
+        sans-serif;
+
+    letter-spacing:
+        3px;
+
+    color:
+        var(--yellow);
+
+}
+
+
+.hero-copy {
+
+    color:
+        #d9d3c2;
+
+    font:
+        13px/1.8 'DM Mono',
+        monospace;
+
+}
+
+
+/* =========================================================
+   REGION GRID
+========================================================= */
+
+.region-grid {
+
+    display:
+        grid;
+
+    gap:
+        10px;
+
+    margin-top:
+        28px;
+
+    max-width:
+        480px;
+
+}
+
+
+.region-card {
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+    width:
+        100%;
+
+    min-height:
+        82px;
+
+    border:
+        1px solid rgba(255,255,255,.18);
+
+    border-radius:
+        8px;
+
+    color:
+        #f4ead6;
+
+    text-align:
+        left;
+
+    padding:
+        18px 22px;
+
+    box-shadow:
+
+        0 8px 22px rgba(0,0,0,.3),
+
+        inset 0 1px rgba(255,255,255,.12);
+
+    transition:
+        .2s transform,
+        .2s filter;
+
+}
+
+
+.region-card:hover {
+
+    transform:
+        translateX(7px);
+
+    filter:
+        brightness(1.12);
+
+}
+
+
+.region-card:nth-child(1) {
+
+    background:
+        linear-gradient(
+            100deg,
+            #35532e,
+            #526a35
+        );
+
+}
+
+
+.region-card:nth-child(2) {
+
+    background:
+        linear-gradient(
+            100deg,
+            #68532b,
+            #92713a
+        );
+
+}
+
+
+.region-card:nth-child(3) {
+
+    background:
+        linear-gradient(
+            100deg,
+            #6e3025,
+            #a24b34
+        );
+
+}
+
+
+.region-name {
+
+    font:
+        27px Anton,
+        sans-serif;
+
+    letter-spacing:
+        1px;
+
+}
+
+
+.region-date {
+
+    font:
+        12px 'DM Mono',
+        monospace;
+
+    opacity:
+        .82;
+
+}
+
+
+.region-icon {
+
+    position:
+        absolute;
+
+    right:
+        22px;
+
+    top:
+        20px;
+
+    font-size:
+        28px;
+
+    opacity:
+        .7;
+
+}
+
+
+/* =========================================================
+   EXPEDITION PANEL
+========================================================= */
+
+.expedition-panel {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    margin-left:
+        auto;
+
+    width:
+        min(500px,40vw);
+
+    padding:
+        20px 25px;
+
+    border:
+        2px solid #715632;
+
+    border-radius:
+        9px;
+
+    background:
+
+        linear-gradient(
+            145deg,
+            rgba(31,37,25,.95),
+            rgba(17,20,14,.96)
+        );
+
+    box-shadow:
+
+        var(--shadow),
+
+        inset 0 0 0 3px rgba(0,0,0,.25);
+
+}
+
+
+.panel-title {
+
+    text-align:
+        center;
+
+    color:
+        #9db35c;
+
+    font:
+        16px Anton,
+        sans-serif;
+
+    letter-spacing:
+        2px;
+
+    padding-bottom:
+        15px;
+
+    border-bottom:
+        1px solid #57492f;
+
+}
+
+
+.stats {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    padding-top:
+        14px;
+
+}
+
+
+.stats div {
+
+    text-align:
+        center;
+
+    border-right:
+        1px solid #4c4635;
+
+}
+
+
+.stats div:last-child {
+
+    border-right:
+        0;
+
+}
+
+
+.stats b {
+
+    display:
+        block;
+
+    font:
+        32px Anton,
+        sans-serif;
+
+    color:
+        #f3e6c9;
+
+}
+
+
+.stats span {
+
+    font:
+        10px 'DM Mono',
+        monospace;
+
+    color:
+        #a9a08b;
+
+    letter-spacing:
+        1px;
+
+}
+
+
+/* =========================================================
+   REGION PAGE
+========================================================= */
+
+.region-page {
+
+    position:
+        relative;
+
+    min-height:
+        100vh;
+
+    padding:
+        105px
+        5vw
+        60px;
+
+    background-color:
+        #10130e;
+
+    background-position:
+        center;
+
+    background-size:
+        cover;
+
+    background-repeat:
+        no-repeat;
+
+    background-attachment:
+        fixed;
+
+    transition:
+        background-image .45s ease;
+
+}
+
+
+.region-page::before {
+
+    content:
+        "";
+
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    z-index:
+        0;
+
+    pointer-events:
+        none;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(10,15,9,.88),
+            rgba(10,15,9,.55),
+            rgba(10,15,9,.35)
+        ),
+
+        linear-gradient(
+            0deg,
+            rgba(8,11,7,.92),
+            rgba(8,11,7,.20)
+        );
+
+}
+
+
+.region-heading,
+.day-layout {
+
+    position:
+        relative;
+
+    z-index:
+        1;
+
+}
+
+
+.region-heading {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr auto 1fr;
+
+    align-items:
+        center;
+
+    gap:
+        20px;
+
+    max-width:
+        1400px;
+
+    margin:
+        0 auto 35px;
+
+}
+
+
+.region-heading > div:nth-child(2) {
+
+    text-align:
+        center;
+
+}
+
+
+.region-heading h2 {
+
+    margin:
+        0;
+
+    font:
+        70px Anton,
+        sans-serif;
+
+    letter-spacing:
+        3px;
+
+    color:
+        #c4d27d;
+
+    text-shadow:
+        3px 4px #26321f;
+
+}
+
+
+.region-heading p:not(.eyebrow) {
+
+    margin:
+        5px 0 0;
+
+    font:
+        13px 'DM Mono',
+        monospace;
+
+    color:
+        #d4c6a5;
+
+}
+
+
+.back-btn {
+
+    border:
+        1px solid #5f553e;
+
+    background:
+        #27281e;
+
+    color:
+        #e9ddc2;
+
+    padding:
+        10px 15px;
+
+    border-radius:
+        5px;
+
+}
+
+
+.back-btn:hover {
+
+    background:
+        #383b29;
+
+}
+
+
+.difficulty {
+
+    text-align:
+        right;
+
+    color:
+        #b7c96b;
+
+    font:
+        18px 'DM Mono',
+        monospace;
+
+}
+
+
+/* =========================================================
+   DAY LAYOUT
+========================================================= */
+
+.day-layout {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        210px minmax(0,1fr);
+
+    gap:
+        22px;
+
+    max-width:
+        1400px;
+
+    margin:
+        auto;
+
+}
+
+
+.day-nav {
+
+    display:
+        flex;
+
+    flex-direction:
+        column;
+
+    gap:
+        9px;
+
+}
+
+
+.day-button {
+
+    border:
+        1px solid #4d4637;
+
+    background:
+        #27281e;
+
+    color:
+        #d9cfb9;
+
+    text-align:
+        left;
+
+    padding:
+        16px;
+
+    border-radius:
+        6px;
+
+    transition:
+        .2s;
+
+}
+
+
+.day-button:hover {
+
+    transform:
+        translateX(4px);
+
+    background:
+        #34382a;
+
+}
+
+
+.day-button.active {
+
+    background:
+        #718b3d;
+
+    border-color:
+        #9db35c;
+
+    color:
+        white;
+
+}
+
+
+.day-button b {
+
+    display:
+        block;
+
+    font:
+        22px Anton,
+        sans-serif;
+
+}
+
+
+.day-button span {
+
+    font:
+        14px 'DM Mono',
+        monospace;
+
+    letter-spacing:
+        1px;
+
+}
+
+
+/* =========================================================
+   ALBUM
+========================================================= */
+
+.album-area {
+
+    min-width:
+        0;
+
+}
+
+
+.album-header {
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        space-between;
+
+    margin-bottom:
+        10px;
+
+}
+
+
+.album-kicker {
+
+    font:
+        10px 'DM Mono',
+        monospace;
+
+    color:
+        #a8a086;
+
+    letter-spacing:
+        2px;
+
+}
+
+
+.album-header h3 {
+
+    margin:
+        3px 0 0;
+
+    font:
+        30px Anton,
+        sans-serif;
+
+    color:
+        #f0e3c8;
+
+}
+
+
+.album-tools {
+
+    display:
+        flex;
+
+    gap:
+        6px;
+
+}
+
+
+.album-tools button {
+
+    border:
+        1px solid #5f553e;
+
+    background:
+        #27281e;
+
+    color:
+        #e9ddc2;
+
+    padding:
+        6px 13px;
+
+    border-radius:
+        5px;
+
+    font-size:
+        20px;
+
+}
+
+
+/* =========================================================
+   PAPER
+========================================================= */
+
+.album-paper {
+
+    position:
+        relative;
+
+    min-height:
+        560px;
+
+    padding:
+        50px 45px 35px;
+
+    color:
+        var(--ink);
+
+    background:
+
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(255,255,255,.25),
+            transparent 30%
+        ),
+
+        linear-gradient(
+            120deg,
+            #eadab5,
+            #e4ce9f
+        );
+
+    border-radius:
+        4px;
+
+    box-shadow:
+
+        var(--shadow),
+
+        0 0 0 5px #34291d;
+
+}
+
+
+.album-paper::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        10px;
+
+    border:
+        1px dashed rgba(75,57,31,.38);
+
+    pointer-events:
+        none;
+
+}
+
+
+.paper-tape {
+
+    position:
+        absolute;
+
+    width:
+        120px;
+
+    height:
+        30px;
+
+    top:
+        0;
+
+    background:
+        rgba(226,213,178,.7);
+
+}
+
+
+.tape-a {
+
+    left:
+        55px;
+
+    transform:
+        rotate(-4deg);
+
+}
+
+
+.tape-b {
+
+    right:
+        55px;
+
+    transform:
+        rotate(5deg);
+
+}
+
+
+/* =========================================================
+   PHOTO GRID
+========================================================= */
+
+.photo-grid {
+
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(3,minmax(0,1fr));
+
+    gap:
+        25px;
+
+}
+
+
+.photo-card {
+
+    position:
+        relative;
+
+    background:
+        #f3ead8;
+
+    padding:
+        9px 9px 34px;
+
+    box-shadow:
+        0 7px 15px rgba(57,40,20,.28);
+
+    transform:
+        rotate(var(--rotation));
+
+    transition:
+        .22s transform,
+        .22s box-shadow;
+
+}
+
+
+.photo-card:hover {
+
+    transform:
+        rotate(0)
+        translateY(-7px)
+        scale(1.015);
+
+    box-shadow:
+        0 16px 30px rgba(57,40,20,.34);
+
+    z-index:
+        2;
+
+}
+
+
+.photo-card img {
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    aspect-ratio:
+        4/3;
+
+    object-fit:
+        cover;
+
+    background:
+        #d4c7ad;
+
+}
+
+
+.photo-caption {
+
+    position:
+        absolute;
+
+    left:
+        11px;
+
+    right:
+        11px;
+
+    bottom:
+        8px;
+
+    font:
+        12px 'DM Mono',
+        monospace;
+
+    color:
+        #4a473e;
+
+    white-space:
+        nowrap;
+
+    overflow:
+        hidden;
+
+    text-overflow:
+        ellipsis;
+
+}
+
+
+.photo-empty {
+
+    aspect-ratio:
+        4/3;
+
+    display:
+        grid;
+
+    place-items:
+        center;
+
+    background:
+        #d7c8a7;
+
+    color:
+        #77705e;
+
+    border:
+        1px dashed #968a6e;
+
+    text-align:
+        center;
+
+    padding:
+        20px;
+
+}
+
+
+.photo-empty strong {
+
+    display:
+        block;
+
+    font:
+        17px Anton,
+        sans-serif;
+
+}
+
+
+.photo-empty small {
+
+    font:
+        9px 'DM Mono',
+        monospace;
+
+}
+
+
+/* =========================================================
+   MEMORY NOTE
+========================================================= */
+
+.memory-note {
+
+    margin:
+        32px auto 0;
+
+    max-width:
+        600px;
+
+    display:
+        flex;
+
+    gap:
+        14px;
+
+    align-items:
+        flex-start;
+
+    padding:
+        15px 18px;
+
+    background:
+        #d4bd87;
+
+    border:
+        1px solid #9e8655;
+
+    box-shadow:
+        2px 4px 8px rgba(70,45,20,.16);
+
+    transform:
+        rotate(-1deg);
+
+}
+
+
+.note-icon {
+
+    font-size:
+        22px;
+
+    color:
+        #718d3d;
+
+}
+
+
+.memory-note strong {
+
+    font:
+        18px Anton,
+        sans-serif;
+
+    letter-spacing:
+        1px;
+
+}
+
+
+.memory-note p {
+
+    margin:
+        3px 0 0;
+
+    font-size:
+        16px;
+
+    line-height:
+        1.7;
+
+    color:
+        #4d493e;
+
+}
+
+
+/* =========================================================
+   LIGHTBOX
+========================================================= */
+
+.lightbox {
+
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    z-index:
+        100;
+
+    display:
+        none;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    background:
+        rgba(5,7,5,.94);
+
+    backdrop-filter:
+        blur(10px);
+
+}
+
+
+.lightbox.open {
+
+    display:
+        flex;
+
+}
+
+
+.lightbox figure {
+
+    max-width:
+        min(90vw,1200px);
+
+    max-height:
+        90vh;
+
+    margin:
+        0;
+
+    text-align:
+        center;
+
+}
+
+
+.lightbox img {
+
+    max-width:
+        100%;
+
+    max-height:
+        82vh;
+
+    object-fit:
+        contain;
+
+    border:
+        7px solid #f0e6d2;
+
+    box-shadow:
+        0 20px 80px #000;
+
+}
+
+
+.lightbox figcaption {
+
+    margin-top:
+        10px;
+
+    color:
+        #cfc6b2;
+
+    font:
+        12px 'DM Mono',
+        monospace;
+
+}
+
+
+.lightbox-close,
+.lightbox-arrow {
+
+    position:
+        absolute;
+
+    border:
+        0;
+
+    background:
+        rgba(255,255,255,.08);
+
+    color:
+        white;
+
+    border-radius:
+        50%;
+
+    width:
+        48px;
+
+    height:
+        48px;
+
+}
+
+
+.lightbox-close {
+
+    top:
+        25px;
+
+    right:
+        30px;
+
+    font-size:
+        30px;
+
+}
+
+
+.lightbox-arrow {
+
+    top:
+        50%;
+
+    transform:
+        translateY(-50%);
+
+    font-size:
+        40px;
+
+}
+
+
+.lightbox-arrow.left {
+
+    left:
+        25px;
+
+}
+
+
+.lightbox-arrow.right {
+
+    right:
+        25px;
+
+}
+
+
+.lightbox-close:hover,
+.lightbox-arrow:hover {
+
+    background:
+        rgba(255,255,255,.18);
+
+}
+
+
+/* =========================================================
+   FINAL RESCUE BUTTON
+   ★ 電腦版：主畫面正中央
+========================================================= */
+
+.final-rescue-btn {
+
+    position:
+        absolute;
+
+    left:
+        50%;
+
+    top:
+        50%;
+
+    z-index:
+        10;
+
+    width:
+        260px;
+
+    min-height:
+        82px;
+
+    margin:
+        0;
+
+    padding:
+        18px 22px;
+
+    transform:
+        translate(-50%, -50%);
+
+    background:
+
+        linear-gradient(
+            100deg,
+            #8f3827,
+            #c65a32
+        );
+
+    border:
+        1px solid rgba(255,255,255,.22);
+
+    border-radius:
+        8px;
+
+    color:
+        #f4ead6;
+
+    text-align:
+        left;
+
+    box-shadow:
+
+        0 12px 30px rgba(0,0,0,.42),
+
+        inset 0 1px rgba(255,255,255,.16);
+
+    transition:
+        .2s transform,
+        .2s filter;
+
+}
+
+
+.final-rescue-btn:hover {
+
+    transform:
+        translate(-50%, -50%)
+        translateX(7px);
+
+    filter:
+        brightness(1.12);
+
+}
+
+
+.final-rescue-btn .region-name {
+
+    font:
+        27px Anton,
+        sans-serif;
+
+    letter-spacing:
+        1px;
+
+}
+
+
+.final-rescue-btn .region-icon {
+
+    right:
+        22px;
+
+    top:
+        20px;
+
+    font-size:
+        28px;
+
+}
+
+
+/* =========================================================
+   FINAL ENDING
+========================================================= */
+
+.final-ending {
+
+    position:
+        fixed;
+
+    inset:
+        0;
+
+    z-index:
+        500;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    justify-content:
+        center;
+
+    padding:
+        40px;
+
+    background:
+        rgba(5,7,5,.90);
+
+    opacity:
+        0;
+
+    visibility:
+        hidden;
+
+    pointer-events:
+        none;
+
+    transition:
+        opacity .35s ease,
+        visibility .35s ease;
+
+}
+
+
+.final-ending.open {
+
+    opacity:
+        1;
+
+    visibility:
+        visible;
+
+    pointer-events:
+        auto;
+
+}
+
+
+.final-ending::before {
+
+    content:
+        "";
+
+    position:
+        absolute;
+
+    inset:
+        0;
+
+    background:
+
+        radial-gradient(
+            circle at center,
+            rgba(80,100,50,.10),
+            transparent 45%
+        );
+
+    pointer-events:
+        none;
+
+}
+
+
+.final-content {
+
+    position:
+        relative;
+
+    z-index:
+        2;
+
+    width:
+        min(1000px, 90vw);
+
+    text-align:
+        center;
+
+}
+
+
+/* =========================================================
+   SUMMIT MESSAGE
+========================================================= */
+
+.summit-message {
+
+    position:
+        absolute;
+
+    left:
+        50%;
+
+    top:
+        50%;
+
+    width:
+        100%;
+
+    transform:
+        translate(-50%, -50%)
+        scale(1);
+
+    opacity:
+        0;
+
+    color:
+        #f5eddc;
+
+    font:
+        90px Anton,
+        sans-serif;
+
+    letter-spacing:
+        4px;
+
+    text-shadow:
+
+        5px 6px 0 #26301e,
+
+        0 10px 35px rgba(0,0,0,.85);
+
+    pointer-events:
+        none;
+
+    transition:
+        opacity .55s ease,
+        transform .55s ease;
+
+}
+
+
+.summit-message.show {
+
+    opacity:
+        1;
+
+}
+
+
+.summit-message.fade-out {
+
+    opacity:
+        0;
+
+    transform:
+        translate(-50%, -50%)
+        scale(1.08);
+
+}
+
+
+/* =========================================================
+   FINAL PHOTO
+========================================================= */
+
+.final-photo {
+
+    position:
+        relative;
+
+    display:
+        block;
+
+    width:
+        min(900px, 88vw);
+
+    margin:
+        0 auto;
+
+    opacity:
+        0;
+
+    transform:
+        translateY(25px)
+        scale(.97);
+
+    pointer-events:
+        none;
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+
+}
+
+
+.final-photo.show {
+
+    opacity:
+        1;
+
+    transform:
+        translateY(0)
+        scale(1);
+
+    pointer-events:
+        auto;
+
+}
+
+
+.final-photo img {
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    max-height:
+        78vh;
+
+    object-fit:
+        contain;
+
+    border:
+        7px solid #f0e6d2;
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.72);
+
+}
+
+
+/* =========================================================
+   FINAL TITLE
+========================================================= */
+
+.final-title {
+
+    margin:
+        0 0 15px;
+
+    color:
+        #f5eddc;
+
+    font:
+        58px Anton,
+        sans-serif;
+
+    letter-spacing:
+        3px;
+
+    text-shadow:
+
+        4px 5px 0 #26301e,
+
+        0 8px 25px rgba(0,0,0,.8);
+
+}
+
+
+/* =========================================================
+   FINAL CLOSE
+========================================================= */
+
+.final-close {
+
+    position:
+        absolute;
+
+    top:
+        25px;
+
+    right:
+        30px;
+
+    z-index:
+        5;
+
+    width:
+        50px;
+
+    height:
+        50px;
+
+    border:
+        1px solid rgba(255,255,255,.20);
+
+    border-radius:
+        50%;
+
+    background:
+        rgba(255,255,255,.08);
+
+    color:
+        white;
+
+    font-size:
+        32px;
+
+    line-height:
+        1;
+
+    transition:
+        .2s background,
+        .2s transform;
+
+}
+
+
+.final-close:hover {
+
+    background:
+        rgba(255,255,255,.18);
+
+    transform:
+        scale(1.08);
+
+}
+
+
+/* =========================================================
+   PEAK CUSTOM CURSOR
+========================================================= */
+
+.peak-cursor {
+
+    position:
+        fixed;
+
+    left:
+        0;
+
+    top:
+        0;
+
+    width:
+        32px;
+
+    height:
+        38px;
+
+    z-index:
+        9999;
+
+    pointer-events:
+        none;
+
+    transform:
+        translate3d(-5px,-5px,0);
+
+    filter:
+        drop-shadow(
+            3px 4px 2px rgba(0,0,0,.45)
+        );
+
+}
+
+
+.cursor-icon {
+
+    display:
+        block;
+
+    width:
+        32px;
+
+    height:
+        38px;
+
+    transform-origin:
+        6px 5px;
+
+    transition:
+        transform .12s ease,
+        filter .12s ease;
+
+}
+
+
+.peak-cursor.hovering
+.cursor-icon {
+
+    transform:
+        scale(1.12);
+
+    filter:
+        drop-shadow(
+            0 0 5px rgba(226,173,69,.65)
+        );
+
+}
+
+
+.peak-cursor.clicking
+.cursor-icon {
+
+    transform:
+        scale(.82);
+
+    filter:
+        drop-shadow(
+            0 0 10px rgba(226,173,69,.9)
+        );
+
+}
+
+
+/* =========================================================
+   CURSOR TRAIL
+========================================================= */
+
+.cursor-trail {
+
+    position:
+        fixed;
+
+    width:
+        5px;
+
+    height:
+        5px;
+
+    border-radius:
+        50%;
+
+    pointer-events:
+        none;
+
+    z-index:
+        9998;
+
+    background:
+        #d8c58e;
+
+    opacity:
+        .55;
+
+    transform:
+        translate(-50%,-50%);
+
+    animation:
+        cursorTrailFade
+        .55s
+        ease-out
+        forwards;
+
+}
+
+
+@keyframes cursorTrailFade {
+
+    0% {
+
+        opacity:
+            .55;
+
+        transform:
+            translate(-50%,-50%)
+            scale(1);
+
+    }
+
+    100% {
+
+        opacity:
+            0;
+
+        transform:
+            translate(-50%,-50%)
+            scale(.15);
+
+    }
+
+}
+
+
+/* =========================================================
+   CLICK PARTICLES
+========================================================= */
+
+.cursor-particle {
+
+    position:
+        fixed;
+
+    pointer-events:
+        none;
+
+    z-index:
+        9998;
+
+    color:
+        #e2ad45;
+
+    font-family:
+        'DM Mono',
+        monospace;
+
+    font-size:
+        13px;
+
+    font-weight:
+        bold;
+
+    animation:
+        cursorParticle
+        .55s
+        ease-out
+        forwards;
+
+}
+
+
+@keyframes cursorParticle {
+
+    0% {
+
+        opacity:
+            1;
+
+        transform:
+            translate(-50%,-50%)
+            scale(.7);
+
+    }
+
+    100% {
+
+        opacity:
+            0;
+
+        transform:
+            translate(
+                calc(-50% + var(--x)),
+                calc(-50% + var(--y))
+            )
+            scale(1.3);
+
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media(max-width:900px) {
+
+    html,
+    body,
+    button,
+    a,
+    .region-card,
+    .day-button,
+    .photo-card {
+
+        cursor:
+            auto !important;
+
+    }
+
+
+    .peak-cursor {
+
+        display:
+            none;
+
+    }
+
+
+    .hero {
+
+        padding:
+            110px
+            25px
+            40px;
+
+        display:
+            block;
+
+    }
+
+
+    .hero-content {
+
+        padding-top:
+            20px;
+
+    }
+
+
+    .hero h1 {
+
+        font-size:
+            82px;
+
+    }
+
+
+    .hero h2 {
+
+        font-size:
+            28px;
+
+    }
+
+
+    .expedition-panel {
+
+        width:
+            100%;
+
+        margin:
+            35px 0 0;
+
+    }
+
+
+    .region-heading {
+
+        grid-template-columns:
+            1fr auto;
+
+    }
+
+
+    .region-heading > div:nth-child(2) {
+
+        grid-column:
+            1 / -1;
+
+        grid-row:
+            1;
+
+    }
+
+
+    .day-layout {
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .day-nav {
+
+        display:
+            grid;
+
+        grid-template-columns:
+            repeat(3,1fr);
+
+    }
+
+
+    .day-button {
+
+        padding:
+            11px;
+
+    }
+
+
+    .album-paper {
+
+        padding:
+            35px 25px;
+
+    }
+
+
+    /* =========================================
+       FINAL BUTTON — TABLET / MOBILE
+    ========================================= */
+
+    .final-rescue-btn {
+
+        left:
+            50%;
+
+        top:
+            50%;
+
+        width:
+            240px;
+
+        transform:
+            translate(-50%, -50%);
+
+    }
+
+
+    .final-rescue-btn:hover {
+
+        transform:
+            translate(-50%, -50%);
+
+    }
+
+
+    .summit-message {
+
+        font-size:
+            68px;
+
+    }
+
+
+    .final-title {
+
+        font-size:
+            45px;
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:600px) {
+
+    .topbar {
+
+        padding:
+            0 15px;
+
+    }
+
+
+    .top-status span:first-child {
+
+        display:
+            none;
+
+    }
+
+
+    .music-btn {
+
+        padding:
+            7px 9px;
+
+        font-size:
+            9px;
+
+    }
+
+
+    .hero {
+
+        padding-left:
+            18px;
+
+        padding-right:
+            18px;
+
+    }
+
+
+    .hero h1 {
+
+        font-size:
+            66px;
+
+    }
+
+
+    .hero h2 {
+
+        font-size:
+            24px;
+
+    }
+
+
+    .stats b {
+
+        font-size:
+            25px;
+
+    }
+
+
+    .stats span {
+
+        font-size:
+            8px;
+
+    }
+
+
+    .region-heading h2 {
+
+        font-size:
+            53px;
+
+    }
+
+
+    .day-nav {
+
+        grid-template-columns:
+            repeat(3,1fr);
+
+    }
+
+
+    .day-button b {
+
+        font-size:
+            17px;
+
+    }
+
+
+    .day-button span {
+
+        font-size:
+            8px;
+
+    }
+
+
+    .photo-grid {
+
+        grid-template-columns:
+            repeat(2,minmax(0,1fr));
+
+        gap:
+            14px;
+
+    }
+
+
+    .album-paper {
+
+        padding:
+            30px 15px;
+
+    }
+
+
+    .paper-tape {
+
+        display:
+            none;
+
+    }
+
+
+    .lightbox-arrow {
+
+        width:
+            40px;
+
+        height:
+            40px;
+
+        font-size:
+            30px;
+
+    }
+
+
+    .lightbox-arrow.left {
+
+        left:
+            8px;
+
+    }
+
+
+    .lightbox-arrow.right {
+
+        right:
+            8px;
+
+    }
+
+
+    /* =========================================
+       FINAL
+    ========================================= */
+
+    .final-ending {
+
+        padding:
+            20px;
+
+    }
+
+
+    .final-close {
+
+        top:
+            15px;
+
+        right:
+            15px;
+
+        width:
+            44px;
+
+        height:
+            44px;
+
+    }
+
+
+    .summit-message {
+
+        font-size:
+            48px;
+
+        letter-spacing:
+            2px;
+
+    }
+
+
+    .final-photo {
+
+        width:
+            94vw;
+
+    }
+
+
+    .final-photo img {
+
+        max-height:
+            70vh;
+
+        border-width:
+            5px;
+
+    }
+
+
+    .final-title {
+
+        margin-bottom:
+            10px;
+
+        font-size:
+            38px;
+
+    }
+
+}
+
+
+
+
+
+.panel-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+
+/* GuaGua 頭像 */
+
+.panel-title .avatar {
+    width: 28px;
+    height: 28px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    flex-shrink: 0;
+}
+
+
+/* test.png 長條圖片 */
+/*
+.panel-title .badge {
+    width: auto;
+    height: 28px;
+
+    object-fit: contain;
+
+    border-radius: 0;
+
+    flex-shrink: 0;
+}
+*/
+
+
+
+/* =========================================================
+   PANEL TITLE
+========================================================= */
+
+.panel-title {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+}
+
+
+/* =========================================================
+   GuaGua AVATAR
+========================================================= */
+
+.panel-title .avatar {
+
+    width: 28px;
+    height: 28px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    flex-shrink: 0;
+
+}
+
+
+/* =========================================================
+   PEAK STATUS BAR
+========================================================= */
+
+.status-blocks {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 0;
+
+    margin: 0;
+    padding: 0;
+
+    line-height: 0;
+
+    white-space: nowrap;
+
+    flex-shrink: 0;
+
+}
+
+
+/* =========================================================
+   START / END
+========================================================= */
+
+.status-start,
+.status-end {
+
+    display: block;
+
+    /*
+        高度統一
+        寬度自動依照圖片比例縮放
+    */
+
+    height: 24px;
+
+    width: auto;
+
+    margin: 0;
+    padding: 0;
+    border: 0;
+
+    flex: 0 0 auto;
+
+}
+
+
+/* =========================================================
+   COLOR BLOCK
+========================================================= */
+
+.status-block {
+
+    display: block;
+
+    /*
+        和 start / end 一樣的高度
+    */
+
+    height: 24px;
+
+    /*
+        非常重要：
+        不固定 width
+        讓瀏覽器按照原始圖片比例計算
+    */
+
+    width: auto;
+
+    margin: 0;
+    padding: 0;
+    border: 0;
+
+    flex: 0 0 auto;
+
+}
+
+
+
+
+/* =========================================================
+   BRAND
+========================================================= */
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+/* PEAK 圖片 */
+
+.brand-mark {
+    display: flex;
+    align-items: center;
+
+    height: 1em;
+    width: 1em;
+
+    flex-shrink: 0;
+}
+
+
+.brand-mark img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
