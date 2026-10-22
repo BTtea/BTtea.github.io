@@ -105,8 +105,8 @@ const trip = {
                 note:
                     "進入第二個區域。新的城市，新的路線，新的回憶。",
                 photos: [
-                    'assets/taipei/10-20/5杯大冰美.jpg',
-                    'assets/taipei/10-20/這邊可以睡覺喔.jpg'
+                    'assets/taichung/10-20/5杯大冰美.jpg',
+                    'assets/taichung/10-20/這邊可以睡覺喔.jpg'
                 ]
             },
 
@@ -115,7 +115,13 @@ const trip = {
                 day: "DAY 04",
                 note:
                     "這裡是旅程的一半 — DAY 05。",
-                photos: []
+                photos: [
+                    'assets/taichung/10-21/玖是要你背.png',
+                    'assets/taichung/10-21/旁邊有怪人.png',
+                    'assets/taichung/10-21/玖玖跳一次.png',
+                    'assets/taichung/10-21/種點綠植.png',
+                    'assets/taichung/10-21/山頂怎麼沒有信號棒.png'
+                ]
             },
 
             {
