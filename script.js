@@ -76,6 +76,16 @@ const trip = {
                     "台北區域完成。整理裝備，準備前往下一個區域：臺中 GOGO。",
                 photos: [
                     'assets/taipei/10-20/5杯大冰美.jpg',
+                    'assets/taipei/10-20/不要拍了快去催店員上菜.jpg',
+                    'assets/taipei/10-20/台北續攤全員到齊.jpg',
+                    'assets/taipei/10-20/吉野觀戰01.jpg',
+                    'assets/taipei/10-20/吉野觀戰02.jpg',
+                    'assets/taipei/10-20/吉野觀戰03.jpg',
+                    'assets/taipei/10-20/看你睡覺.jpg',
+                    'assets/taipei/10-20/科技冷漠仔.jpg',
+                    'assets/taipei/10-20/菜單可以拿過來一點嗎.jpg',
+                    'assets/taipei/10-20/菜要上了沒.jpg',
+                    'assets/taipei/10-20/認真的吉野.jpg',
                     'assets/taipei/10-20/這邊可以睡覺喔.jpg'
                 ]
             }
@@ -172,7 +182,15 @@ const trip = {
                 day: "DAY 07",
                 note:
                     "倒數第二天。距離 PEAK 只剩最後一段。",
-                photos: []
+                photos: [
+                    'assets/tainan/10-24/10元就夾出來了.jpg',
+                    'assets/tainan/10-24/875元的扇子.jpg',
+                    'assets/tainan/10-24/最後一座山全員到齊.jpg',
+                    'assets/tainan/10-24/西西外婆參戰.jpg',
+                    'assets/tainan/10-24/起床關燈在睡.jpg',
+                    'assets/tainan/10-24/需要幫忙要說喔.jpg',
+                    'assets/tainan/10-24/高枕無憂.jpg'
+                ]
             },
 
             {
@@ -1858,8 +1876,8 @@ function isDateUnlocked() {
     const targetDate = new Date(
         year,
         9,       // 10 月（JavaScript 從 0 開始）
-        26,      // 26 日
-        0,       // 時
+        25,      // 25 日
+        20,       // 時
         0,       // 分
         0,       // 秒
         0        // 毫秒
