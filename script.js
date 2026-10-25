@@ -139,7 +139,21 @@ const trip = {
                 day: "DAY 05",
                 note:
                     "離開台中之前，把今天的照片留在這一頁。",
-                photos: []
+                photos: [
+                    'assets/taichung/10-22/10元要投哪裡.jpg',
+                    'assets/taichung/10-22/OK.jpg',
+                    'assets/taichung/10-22/世界某處，拾得唯一.jpg',
+                    'assets/taichung/10-22/伊藤潤餅.jpg',
+                    'assets/taichung/10-22/兩小無猜.jpg',
+                    'assets/taichung/10-22/可愛起來.jpg',
+                    'assets/taichung/10-22/台中區域全員到齊01.jpg',
+                    'assets/taichung/10-22/台中區域全員到齊02.jpg',
+                    'assets/taichung/10-22/咖啡配美女.jpg',
+                    'assets/taichung/10-22/好吃甜點系列.jpg',
+                    'assets/taichung/10-22/踢芙妮覺得讚.jpg',
+                    'assets/taichung/10-22/這蛋好大顆.jpg',
+                    'assets/taichung/10-22/酷起來.jpg'
+                ]
             }
 
         ]
@@ -189,7 +203,8 @@ const trip = {
                     'assets/tainan/10-24/西西外婆參戰.jpg',
                     'assets/tainan/10-24/起床關燈在睡.jpg',
                     'assets/tainan/10-24/需要幫忙要說喔.jpg',
-                    'assets/tainan/10-24/高枕無憂.jpg'
+                    'assets/tainan/10-24/高枕無憂.jpg',
+                    'assets/tainan/10-24/我們可愛嗎.jpg'
                 ]
             },
 
@@ -198,7 +213,10 @@ const trip = {
                 day: "DAY 08",
                 note:
                     "最後一天 !! 旅程結束，但這些照片會一直留在我們的回憶。",
-                photos: []
+                photos: [
+                    'assets/tainan/10-25/飛機餐01.jpg',
+                    'assets/tainan/10-25/飛機餐02.jpg'
+                ]
             }
 
         ]
@@ -1878,7 +1896,7 @@ function isDateUnlocked() {
         9,       // 10 月（JavaScript 從 0 開始）
         25,      // 25 日
         21,       // 時
-        30,       // 分
+        20,       // 分
         0,       // 秒
         0        // 毫秒
     );
