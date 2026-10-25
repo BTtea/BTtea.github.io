@@ -173,7 +173,7 @@ const trip = {
                 date: "10/23",
                 day: "DAY 06",
                 note:
-                    "不要忘了伴手禮，還有阿吉。",
+                    "不要忘了伴手禮，還有跟大家的回憶。",
                 photos: []
             },
 
@@ -1877,7 +1877,7 @@ function isDateUnlocked() {
         year,
         9,       // 10 月（JavaScript 從 0 開始）
         25,      // 25 日
-        20,       // 時
+        21,       // 時
         30,       // 分
         0,       // 秒
         0        // 毫秒
