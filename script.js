@@ -115,8 +115,13 @@ const trip = {
                 note:
                     "進入第二個區域。新的城市，新的路線，新的回憶。",
                 photos: [
-                    'assets/taichung/10-20/5杯大冰美.jpg',
-                    'assets/taichung/10-20/這邊可以睡覺喔.jpg'
+                    'assets/taichung/10-20/10元要投哪裡.jpg',
+                    'assets/taichung/10-20/OK.jpg',
+                    'assets/taichung/10-20/世界某處，拾得唯一.jpg',
+                    'assets/taichung/10-20/伊藤潤餅.jpg',
+                    'assets/taichung/10-20/好吃甜點系列.jpg',
+                    'assets/taichung/10-20/踢芙妮覺得讚.jpg',
+                    'assets/taichung/10-20/這蛋好大顆.jpg'
                 ]
             },
 
@@ -140,18 +145,11 @@ const trip = {
                 note:
                     "離開台中之前，把今天的照片留在這一頁。",
                 photos: [
-                    'assets/taichung/10-22/10元要投哪裡.jpg',
-                    'assets/taichung/10-22/OK.jpg',
-                    'assets/taichung/10-22/世界某處，拾得唯一.jpg',
-                    'assets/taichung/10-22/伊藤潤餅.jpg',
                     'assets/taichung/10-22/兩小無猜.jpg',
                     'assets/taichung/10-22/可愛起來.jpg',
                     'assets/taichung/10-22/台中區域全員到齊01.jpg',
                     'assets/taichung/10-22/台中區域全員到齊02.jpg',
                     'assets/taichung/10-22/咖啡配美女.jpg',
-                    'assets/taichung/10-22/好吃甜點系列.jpg',
-                    'assets/taichung/10-22/踢芙妮覺得讚.jpg',
-                    'assets/taichung/10-22/這蛋好大顆.jpg',
                     'assets/taichung/10-22/酷起來.jpg'
                 ]
             }
