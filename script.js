@@ -1877,8 +1877,8 @@ function isDateUnlocked() {
         year,
         9,       // 10 月（JavaScript 從 0 開始）
         25,      // 25 日
-        23,       // 時
-        0,       // 分
+        20,       // 時
+        30,       // 分
         0,       // 秒
         0        // 毫秒
     );
